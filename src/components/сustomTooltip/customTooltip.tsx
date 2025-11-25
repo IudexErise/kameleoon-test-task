@@ -3,6 +3,10 @@ import styles from "./customTooltip.module.css";
 export default function CustomTooltip({ active, payload, label }) {
   if (!active || !payload) return null;
 
+  const sortedPayload = [...payload].sort(
+    (a, b) => Number(b.value) - Number(a.value)
+  );
+
   return (
     <div className={styles.container}>
       <div className={styles.dateContainer}>
@@ -22,7 +26,7 @@ export default function CustomTooltip({ active, payload, label }) {
       </div>
 
       <div className={styles.line} />
-      {payload.map((item, index) => (
+      {sortedPayload.map((item, index) => (
         <div key={item.name} className={styles.item}>
           <div className={styles.itemName}>
             <svg

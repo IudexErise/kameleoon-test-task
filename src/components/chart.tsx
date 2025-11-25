@@ -72,16 +72,7 @@ export default function Chart({ data }: ChartProps) {
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="date" />
       <YAxis width="auto" />
-      <Tooltip
-        content={
-          <CustomTooltip
-            active={undefined}
-            payload={undefined}
-            label={undefined}
-          />
-        }
-        itemSorter={(item) => -item.value}
-      />
+      <Tooltip content={<CustomTooltip />} />
       {fixOriginalRecords.map((v) => (
         <Line
           key={v.id}
