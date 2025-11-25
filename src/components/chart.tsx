@@ -5,8 +5,8 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
 } from "recharts";
+import CustomTooltip from "./сustomTooltip/customTooltip";
 
 interface VariationTypes {
   id?: number;
@@ -72,12 +72,20 @@ export default function Chart({ data }: ChartProps) {
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="date" />
       <YAxis width="auto" />
-      <Tooltip />
-      <Legend />
+      <Tooltip
+        content={
+          <CustomTooltip
+            active={undefined}
+            payload={undefined}
+            label={undefined}
+          />
+        }
+        itemSorter={(item) => -item.value}
+      />
       {fixOriginalRecords.map((v) => (
         <Line
           key={v.id}
-          type="monotone"
+          type="linear"
           dataKey={String(v.id)}
           name={v.name}
           connectNulls={true}
