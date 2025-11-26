@@ -1,6 +1,17 @@
+import type { TooltipPayload } from "recharts/types/state/tooltipSlice";
 import styles from "./customTooltip.module.css";
 
-export default function CustomTooltip({ active, payload, label }) {
+interface TooltipProps {
+  active: boolean;
+  payload: TooltipPayload;
+  label: string;
+}
+
+export default function CustomTooltip({
+  active,
+  payload,
+  label,
+}: TooltipProps) {
   if (!active || !payload) return null;
 
   const sortedPayload = [...payload].sort(

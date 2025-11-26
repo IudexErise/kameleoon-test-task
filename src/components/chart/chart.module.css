@@ -1,0 +1,39 @@
+.variationsSelectContainer {
+  position: relative;
+}
+
+.variationsSelectValue {
+  width: 180px;
+  height: 28px;
+  display: flex;
+  justify-content: space-between;
+  padding: 6.5px 8px;
+  align-items: center;
+  border: 1px solid #c7c5d0;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.openButton {
+  border: none;
+  background-color: transparent;
+}
+
+.closeButton {
+  border: none;
+  background-color: transparent;
+  transform: rotate(180deg);
+}
+
+.variationsBox {
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  padding: 6.5px 8px;
+  border: 1px solid #c7c5d0;
+  border-radius: 6px;
+  gap: 5px;
+  position: absolute;
+  z-index: 1000;
+  background: white;
+}
