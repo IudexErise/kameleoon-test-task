@@ -7,6 +7,7 @@ import {
   Tooltip,
   AreaChart,
   Area,
+  Brush,
 } from "recharts";
 import styles from "./chart.module.css";
 import CustomTooltip from "../сustomTooltip/customTooltip";
@@ -79,7 +80,6 @@ export default function Chart({ data }: ChartProps) {
       setVariationsCounter(`${variationsSelected.length} are selected`);
     }
   }, [variationsSelected, setVariationsSelected, data.variations.length]);
-
   /* работа с выбором типа линий */
   const [lineStylesOpen, setLineStylesOpen] = useState<boolean>(false);
   const [lineStyles, setLineStyles] = useState<"linear" | "bump" | "area">(
@@ -107,7 +107,7 @@ export default function Chart({ data }: ChartProps) {
 
   /*сохранение в пнг */
 
-  const [getPng, { ref, isLoading }] = useCurrentPng();
+  const [getPng, { ref }] = useCurrentPng();
   const handleDownload = useCallback(async () => {
     const png = await getPng();
 
@@ -261,7 +261,17 @@ export default function Chart({ data }: ChartProps) {
             <CartesianGrid strokeDasharray="4 4 " />
             <XAxis dataKey="date" />
             <YAxis width="auto" />
-            <Tooltip content={<CustomTooltip colors={colors} />} />
+            <Tooltip
+              content={
+                <CustomTooltip
+                  colors={colors}
+                  active={false}
+                  payload={[]}
+                  label={""}
+                />
+              }
+            />
+            <Brush dataKey="date" height={50} stroke="gray" />
             {fixOriginalRecords
               .filter((v) => variationsSelected.includes(String(v.id)))
               .map((v) => (
@@ -294,7 +304,17 @@ export default function Chart({ data }: ChartProps) {
             <CartesianGrid strokeDasharray="4 4 " />
             <XAxis dataKey="date" />
             <YAxis width="auto" />
-            <Tooltip content={<CustomTooltip colors={colors} />} />
+            <Tooltip
+              content={
+                <CustomTooltip
+                  colors={colors}
+                  active={false}
+                  payload={[]}
+                  label={""}
+                />
+              }
+            />
+            <Brush dataKey="date" height={50} stroke="gray" />
             {fixOriginalRecords
               .filter((v) => variationsSelected.includes(String(v.id)))
               .map((v) => (
