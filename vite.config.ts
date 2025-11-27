@@ -4,5 +4,5 @@ import react from "@vitejs/plugin-react";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: 'https://iudexerise.github.io/kameleoon-test-task/'
+  base: '/kameleoon-test-task/'
 });
