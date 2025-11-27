@@ -14,12 +14,6 @@
 
 .date {
   margin-left: 8px;
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 15px;
-  white-space: nowrap;
   color: #52515b;
 }
 
@@ -44,21 +38,11 @@
 }
 
 .name {
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
   line-height: 16px;
-  white-space: nowrap;
   color: #1b1b23;
 }
 
 .value {
-  font-family: "Roboto";
-  font-style: normal;
   font-weight: 600;
-  font-size: 12px;
-  line-height: 15px;
-  white-space: nowrap;
   color: #52515b;
 }

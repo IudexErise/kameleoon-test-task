@@ -2,6 +2,12 @@
   display: flex;
   justify-content: space-between;
   max-width: 1300px;
+  margin-bottom: 10px;
+}
+
+.basicControls {
+  display: flex;
+  gap: 8px;
 }
 
 .variationsSelectContainer {
@@ -9,15 +15,12 @@
 }
 
 .variationsSelectValue {
-  width: 180px;
-  height: 28px;
   display: flex;
   justify-content: space-between;
   padding: 6.5px 8px;
   align-items: center;
   border: 1px solid #c7c5d0;
   border-radius: 6px;
-  margin-bottom: 10px;
 }
 
 .openButton {
@@ -32,7 +35,6 @@
 }
 
 .variationsBox {
-  width: 180px;
   display: flex;
   flex-direction: column;
   padding: 6.5px 8px;
@@ -41,7 +43,8 @@
   gap: 5px;
   position: absolute;
   z-index: 1000;
-  background: white;
+  background: var(--bg-color);
+  width: 100%;
 }
 
 .bonusControls {
@@ -50,20 +53,16 @@
 }
 
 .lineStyleSelectContainer {
-  width: 150px;
-  height: 28px;
   display: flex;
   justify-content: space-between;
   padding: 6.5px 8px;
   align-items: center;
   border: 1px solid #c7c5d0;
   border-radius: 6px;
-  margin-bottom: 10px;
   position: relative;
 }
 
 .lineStyleBox {
-  width: 150px;
   display: flex;
   flex-direction: column;
   border: 1px solid #c7c5d0;
@@ -71,19 +70,24 @@
   gap: 5px;
   position: absolute;
   z-index: 1000;
-  background: white;
+  background: var(--bg-color);
   top: calc(100% + 10px);
   left: 0;
+  width: 100%;
+}
 
-  div:hover {
-    cursor: pointer;
-  }
+.styleOption {
+  padding: 6.5px 8px;
+}
+
+.styleOption:hover {
+  cursor: pointer;
 }
 
 .download {
-  width: 43px;
-  height: 43px;
+  width: 34.5px;
+  height: 34.5px;
   border: 1px solid #c7c5d0;
   border-radius: 6px;
-  background-color: white;
+  background-color: var(--bg-color);
 }

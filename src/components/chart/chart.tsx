@@ -13,6 +13,7 @@ import CustomTooltip from "../сustomTooltip/customTooltip";
 import { useCallback, useEffect, useState } from "react";
 import { useCurrentPng } from "recharts-to-png";
 import { saveAs } from "file-saver";
+import ThemeSwitcher from "../themeSwitcher/themeSwtcher";
 
 interface VariationTypes {
   id?: number;
@@ -166,6 +167,7 @@ export default function Chart({ data }: ChartProps) {
               </div>
             )}
           </div>
+          <ThemeSwitcher />
         </div>
         <div className={styles.bonusControls}>
           <div className={styles.lineStyleSelectContainer}>
@@ -196,9 +198,24 @@ export default function Chart({ data }: ChartProps) {
             </button>
             {lineStylesOpen && (
               <div className={styles.lineStyleBox}>
-                <div onClick={() => changeLineStyle("linear")}>Linear</div>
-                <div onClick={() => changeLineStyle("bump")}>Bump</div>
-                <div onClick={() => changeLineStyle("area")}>Area</div>
+                <div
+                  onClick={() => changeLineStyle("linear")}
+                  className={styles.styleOption}
+                >
+                  Linear
+                </div>
+                <div
+                  onClick={() => changeLineStyle("bump")}
+                  className={styles.styleOption}
+                >
+                  Bump
+                </div>
+                <div
+                  onClick={() => changeLineStyle("area")}
+                  className={styles.styleOption}
+                >
+                  Area
+                </div>
               </div>
             )}
           </div>

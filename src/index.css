@@ -1,0 +1,23 @@
+* {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  white-space: nowrap;
+}
+
+:root {
+  --bg-color: white;
+  --text-color:   color: #1b1b23;;
+}
+
+.dark-theme {
+  --bg-color: #000027;
+  --text-color: white;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+}
