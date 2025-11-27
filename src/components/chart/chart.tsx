@@ -8,10 +8,11 @@ import {
   AreaChart,
   Area,
 } from "recharts";
-
 import styles from "./chart.module.css";
 import CustomTooltip from "../сustomTooltip/customTooltip";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { useCurrentPng } from "recharts-to-png";
+import { saveAs } from "file-saver";
 
 interface VariationTypes {
   id?: number;
@@ -103,6 +104,17 @@ export default function Chart({ data }: ChartProps) {
   }
   const colors = generateColors(data.variations);
 
+  /*сохранение в пнг */
+
+  const [getPng, { ref, isLoading }] = useCurrentPng();
+  const handleDownload = useCallback(async () => {
+    const png = await getPng();
+
+    if (png) {
+      saveAs(png, "myChart.png");
+    }
+  }, [getPng]);
+
   return (
     <>
       <div className={styles.controlsContainer}>
@@ -182,14 +194,35 @@ export default function Chart({ data }: ChartProps) {
                 </g>
               </svg>
             </button>
+            {lineStylesOpen && (
+              <div className={styles.lineStyleBox}>
+                <div onClick={() => changeLineStyle("linear")}>Linear</div>
+                <div onClick={() => changeLineStyle("bump")}>Bump</div>
+                <div onClick={() => changeLineStyle("area")}>Area</div>
+              </div>
+            )}
           </div>
-          {lineStylesOpen && (
-            <div className={styles.lineStyleBox}>
-              <div onClick={() => changeLineStyle("linear")}>Linear</div>
-              <div onClick={() => changeLineStyle("bump")}>Bump</div>
-              <div onClick={() => changeLineStyle("area")}>Area</div>
-            </div>
-          )}
+          <button
+            onClick={() => handleDownload()}
+            className={styles.download}
+            title="Download"
+          >
+            <svg
+              width="11"
+              height="11"
+              viewBox="0 0 11 11"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g>
+                <rect width="11" height="11" />
+                <path
+                  d="M2.75 0L2.75 0.6875L0.859375 0.6875C0.764451 0.6875 0.6875 0.764451 0.6875 0.859375L0.6875 2.75L0 2.75L0 0.34375C0 0.153902 0.153902 0 0.34375 0L2.75 0ZM5.5 0.6875L5.5 0L7.90625 0C8.0961 0 8.25 0.153902 8.25 0.34375L8.25 2.75L7.5625 2.75L7.5625 0.859375C7.5625 0.764451 7.48555 0.6875 7.39062 0.6875L5.5 0.6875ZM0 7.90625C0 8.0961 0.153902 8.25 0.34375 8.25L2.75 8.25L2.75 7.5625L0.859375 7.5625C0.764451 7.5625 0.6875 7.48555 0.6875 7.39062L0.6875 5.5L0 5.5L0 7.90625ZM5.98788 11L7.73018 8.24386L11 7.33281L4.125 3.4375L5.98788 11Z"
+                  fill="#5E5D67"
+                />
+              </g>
+            </svg>
+          </button>
         </div>
       </div>
       <div className={styles.ChartContainer}>
@@ -206,6 +239,7 @@ export default function Chart({ data }: ChartProps) {
             data={parsedData.filter((item) =>
               variationsSelected.some((id) => item[id] !== undefined)
             )}
+            ref={ref}
           >
             <CartesianGrid strokeDasharray="4 4 " />
             <XAxis dataKey="date" />
@@ -213,7 +247,7 @@ export default function Chart({ data }: ChartProps) {
             <Tooltip content={<CustomTooltip colors={colors} />} />
             {fixOriginalRecords
               .filter((v) => variationsSelected.includes(String(v.id)))
-              .map((v, index) => (
+              .map((v) => (
                 <Area
                   key={v.id}
                   type="monotone"
@@ -238,6 +272,7 @@ export default function Chart({ data }: ChartProps) {
             data={parsedData.filter((item) =>
               variationsSelected.some((id) => item[id] !== undefined)
             )}
+            ref={ref}
           >
             <CartesianGrid strokeDasharray="4 4 " />
             <XAxis dataKey="date" />
@@ -245,7 +280,7 @@ export default function Chart({ data }: ChartProps) {
             <Tooltip content={<CustomTooltip colors={colors} />} />
             {fixOriginalRecords
               .filter((v) => variationsSelected.includes(String(v.id)))
-              .map((v, index) => (
+              .map((v) => (
                 <Line
                   key={v.id}
                   type={lineStyles}

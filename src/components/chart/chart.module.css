@@ -44,6 +44,11 @@
   background: white;
 }
 
+.bonusControls {
+  display: flex;
+  gap: 20px;
+}
+
 .lineStyleSelectContainer {
   width: 150px;
   height: 28px;
@@ -61,15 +66,24 @@
   width: 150px;
   display: flex;
   flex-direction: column;
-  padding: 6.5px 8px;
   border: 1px solid #c7c5d0;
   border-radius: 6px;
   gap: 5px;
   position: absolute;
   z-index: 1000;
   background: white;
+  top: calc(100% + 10px);
+  left: 0;
 
   div:hover {
     cursor: pointer;
   }
+}
+
+.download {
+  width: 43px;
+  height: 43px;
+  border: 1px solid #c7c5d0;
+  border-radius: 6px;
+  background-color: white;
 }
