@@ -23,8 +23,8 @@ interface VariationTypes {
 
 interface DataItemTypes {
   date: string;
-  visits: Record<string, number>;
-  conversions: Record<string, number>;
+  visits: Record<string, number | undefined>;
+  conversions: Record<string, number | undefined>;
 }
 
 interface DataTypes {
@@ -38,12 +38,16 @@ interface ChartProps {
 
 export default function Chart({ data }: ChartProps) {
   /* работа с данными графика */
+
   const parsedData = data.data.map((item) => {
     const record: Record<string, number | string> = { date: item.date };
 
     Object.keys(item.conversions).forEach((id) => {
       const visits = item.visits[id];
       const conv = item.conversions[id];
+
+      // ❗ПРОСТО ПРОПУСКАЕМ undefined — и больше ничего не нужно
+      if (typeof visits !== "number" || typeof conv !== "number") return;
 
       const value = Number(((conv / visits) * 100).toFixed(2));
 
