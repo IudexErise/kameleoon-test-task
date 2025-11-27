@@ -1,3 +1,9 @@
+.controlsContainer {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1300px;
+}
+
 .variationsSelectContainer {
   position: relative;
 }
@@ -36,4 +42,34 @@
   position: absolute;
   z-index: 1000;
   background: white;
+}
+
+.lineStyleSelectContainer {
+  width: 150px;
+  height: 28px;
+  display: flex;
+  justify-content: space-between;
+  padding: 6.5px 8px;
+  align-items: center;
+  border: 1px solid #c7c5d0;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.lineStyleBox {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  padding: 6.5px 8px;
+  border: 1px solid #c7c5d0;
+  border-radius: 6px;
+  gap: 5px;
+  position: absolute;
+  z-index: 1000;
+  background: white;
+
+  div:hover {
+    cursor: pointer;
+  }
 }

@@ -5,12 +5,14 @@ interface TooltipProps {
   active: boolean;
   payload: TooltipPayload;
   label: string;
+  colors: Record<string, string>;
 }
 
 export default function CustomTooltip({
   active,
   payload,
   label,
+  colors,
 }: TooltipProps) {
   if (!active || !payload) return null;
 
@@ -40,19 +42,10 @@ export default function CustomTooltip({
       {sortedPayload.map((item, index) => (
         <div key={item.name} className={styles.item}>
           <div className={styles.itemName}>
-            <svg
-              width="10"
-              height="10"
-              viewBox="0 0 10 10"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect width="10" height="10" />
-              <circle cx="5" cy="5" r="5" fill="#FF8346" />
+            <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden>
+              <circle cx="5" cy="5" r="5" fill={colors[String(item.dataKey)]} />
             </svg>
-
             <span className={styles.name}>{item.name}</span>
-
             {index === 0 && (
               <svg
                 width="18"
